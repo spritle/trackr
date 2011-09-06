@@ -1,0 +1,76 @@
+<div id="pageTitle">
+	<h1><%= @story.storyid%></h1>
+</div>
+
+<div id="toolbar">
+        <%= link_to "Back", :action => :index %>
+        <%= link_to "Edit", :action => :edit, :id => @story.object %>
+</div>
+
+
+<div id="content">
+
+    <table>
+
+       <tr>
+    	<td class="itemLabel">Name</td>
+        <td class="itemValue"><%= @story.name%></td>
+      </tr>
+
+      <tr>
+    	<td class="itemLabel">StoryType</td>
+        <td class="itemValue"><%= @story.story_type%></td>
+      </tr>
+
+      <tr>
+    	<td class="itemLabel">Estimate</td>
+        <td class="itemValue"><%= @story.estimate%></td>
+      </tr>
+
+      <tr>
+    	<td class="itemLabel">CurrentState</td>
+        <td class="itemValue"><%= @story.current_state%></td>
+      </tr>
+      
+      <tr>
+    	<td class="itemLabel">RequestedBy</td>
+        <td class="itemValue"><%= @story.requested_by%></td>
+      </tr>
+
+      <tr>
+    	<td class="itemLabel">OwnedBy</td>
+        <td class="itemValue"><%= @story.owned_by%></td>
+      </tr>
+
+
+      <tr>
+    	<td class="itemLabel">Description</td>
+        <td class="itemValue"><%= @story.description%></td>
+      </tr>
+      
+
+      <tr>
+    	<td class="itemLabel">Projectid</td>
+        <td class="itemValue"><%= @story.projectid%></td>
+      </tr>
+      
+      <tr>
+    	<td class="itemLabel">CreatedAt</td>
+        <td class="itemValue"><%= @story.created_at%></td>
+      </tr>
+
+
+      
+      
+      <tr>
+    	<td class="itemLabel">AcceptedAt</td>
+        <td class="itemValue"><%= @story.accepted_at%></td>
+      </tr>
+      
+      <tr>
+    	<td class="itemLabel">Labels</td>
+        <td class="itemValue"><%= @story.labels%></td>
+      </tr>
+      
+    </table>
+</div>

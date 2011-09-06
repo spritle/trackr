@@ -1,0 +1,23 @@
+<div id="ajax" class="wrapper">
+  <header class="main margin">
+    <h1>
+      <% unless System::get_property('platform') == 'ANDROID' %>
+        <a href="<%= url_for :action => :index, :id => @params["story_id"] %>" class="backButton toolbar-btn left"><span>Cancel</span></a>
+      <%  end %>
+      New Comment
+    </h1>
+  </header>
+  <form action="<%= url_for :action => :create, :id => @params["story_id"] %>">
+    <input type="hidden" name="id" value="<%= @comment.object %>"/>
+    <section class="content padding">
+      <fieldset>
+        <div class="text editable">
+          <textarea type="text" name="comment[text]" rows="6" placeholder="Add a comment"></textarea>
+        </div>
+      </fieldset>
+      <div class="button blue">
+        <input type="submit" value="Save" />
+      </div>
+    </section>
+  </form>
+</div>

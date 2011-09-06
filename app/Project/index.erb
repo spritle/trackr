@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <header class="main">
+      <h1>Projects</h1>
+  </header>
+  <section class="content">
+    <ul class="full-list">
+      <% @projects.each do |project| %>
+
+          <li>
+            <a href="<%= url_for :controller => "Story", :action => :load_tab, :query => {:projectid => project.object, :iteration => "current",:ssl => project.use_https} %>">
+              <span><%= project.name.capitalize %></span><span class="number"><%=  project.current_velocity %></span><span class="arrow"><img src="/public/images/icn/arrow-next.png" height="13" alt="Go" /></span>
+            </a>
+          </li>
+
+      <% end %>
+    </ul>
+  </section>
+</div>

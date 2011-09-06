@@ -1,0 +1,27 @@
+<div class="pageTitle">
+  <h1>Edit <%= @comment.id %></h1>
+</div>
+
+<div class="toolbar">
+  <div class="leftItem backButton">
+    <a href="<%= url_for :action => :show, :id => @comment.object %>">Cancel</a>
+  </div>
+  <div class="rightItem regularButton">
+    <a class="button" href="<%= url_for :action => :delete, :id => @comment.object %>">Delete</a>
+  </div>
+</div>
+
+<div class="content">
+  <form method="POST" action="<%= url_for :action => :update %>">
+    <input type="hidden" name="id" value="<%= @comment.object %>"/>
+    <ul>
+      
+          <li>
+            <label for="comment[text]" class="fieldLabel">Text</label>
+            <input type="text" name="comment[text]" value="<%= @comment.text %>" <%= placeholder( "Text" ) %> />
+          </li>
+      
+    </ul>
+    <input type="submit" class="standardButton" value="Update"/>
+  </form>
+</div>

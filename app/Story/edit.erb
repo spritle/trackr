@@ -1,0 +1,71 @@
+<div id="ajax" class="wrapper">
+  <header class="main margin">
+    <h1>
+      <% unless System::get_property('platform') == 'ANDROID' %>
+        <a href="<%= url_for :action => :show, :id => @story.object %>" class="backButton toolbar-btn left"><span>Cancel</span></a>
+      <%  end %>
+      Edit Story
+    </h1>
+  </header>
+  <section class="content padding">
+    <form id="form_delete" action="<%= url_for :action => :delete %>"></form>
+
+  <form action="<%= url_for :action => :update %>">
+    <input type="hidden" name="id" value="<%= @story.object %>"/>
+    <input type="hidden" name="story[projectid]" value="<%= @story.projectid %>" />
+
+    <fieldset>
+      <div class="text editable">
+        <textarea rows="3" name="story[name]"><%= @story.name %></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="text arrow">
+        <select name="story[story_type]" id="story[story_type]" onchange="display_estimate(this.value)">
+          <option value="feature" <% if @story.story_type == "feature" %>selected<% end %>>Feature</option>
+          <option value="bug" <% if @story.story_type == "bug" %>selected<% end %>>Bug</option>
+          <option value="chore" <% if @story.story_type == "chore" %>selected<% end %>>Chore</option>
+          <option value="release" <% if @story.story_type == "release" %>selected<% end %>>Release</option>
+        </select>
+        <span class="arrow"><img src="/public/images/icn/arrow-next.png" height="13" alt="Go" /></span>
+      </div>
+
+      <div class="text arrow" id="story[estimate]">
+        <select name="story[estimate]" >
+          <option value="-1">Unestimated</option>
+        <% @story.point_scale.split(",").each do |points| %>
+            <option value="<%= points %>" <% if @story.estimate == points %>selected<% end %>><%= points %> points</option>
+        <% end %>
+        </select>
+        <span class="arrow"><img src="/public/images/icn/arrow-next.png" height="13" alt="Go" /></span>
+      </div>
+
+      <div class="text arrow">
+        <select name="story[current_state]" id="story[current_state]">
+          <option value="unscheduled" <% if @story.current_state == "unscheduled" %>selected<% end %>>Not yet started</option>
+          <option value="started" <% if @story.current_state == "started" %>selected<% end %>>Started</option>
+          <option value="finished" <% if @story.current_state == "finished" %>selected<% end %>>Finished</option>
+          <option value="delivered" <% if @story.current_state == "delivered" %>selected<% end %>>Delivered</option>
+          <option value="accepted" <% if @story.current_state == "accepted" %>selected<% end %>>Accepted</option>
+          <option value="rejected" <% if @story.current_state == "rejected" %>selected<% end %>>Rejected</option>
+        </select>
+        <span class="arrow"><img src="/public/images/icn/arrow-next.png" height="13" alt="Go" /></span>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="text editable">
+        <p class="title">Description</p>
+        <textarea class="small" rows="6" name="story[description]"><%= @story.description %></textarea>
+      </div>
+    </fieldset>
+
+    <a class="toolbar-btn_input"><input type="submit" value="Done" /></a>
+
+    <fieldset>
+      <div class="button red"><input onclick="delete_story(document.getElementById('form_delete'))" value="Delete" /></div>
+    </fieldset>
+
+  </form>
+</div>

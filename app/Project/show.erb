@@ -1,0 +1,43 @@
+<div class="pageTitle">
+  <h1><%= @project.projectid %></h1>
+</div>
+
+<div class="toolbar">
+  <div class="leftItem backButton">
+    <a href="<%= url_for :action => :index %>">Back</a>
+  </div>
+  <div class="rightItem regularButton">
+    <a href="<%= url_for :action => :edit, :id => @project.object %>">Edit</a>
+  </div>
+</div>
+
+<div class="content">
+  <ul>
+    
+        <li>
+          <div class="itemLabel">Projectid</div>
+          <div class="itemValue"><%= @project.projectid %></div>
+        </li>
+    
+        <li>
+          <div class="itemLabel">Name</div>
+          <div class="itemValue"><%= @project.name %></div>
+        </li>
+    
+        <li>
+          <div class="itemLabel">CurrentVelocity</div>
+          <div class="itemValue"><%= @project.current_velocity %></div>
+        </li>
+    
+        <li>
+          <div class="itemLabel">Label</div>
+          <div class="itemValue"><%= @project.label %></div>
+        </li>
+    
+        <li>
+          <div class="itemLabel">UseHttps</div>
+          <div class="itemValue"><%= @project.use_https %></div>
+        </li>
+    
+  </ul>
+</div>

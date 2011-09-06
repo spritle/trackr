@@ -1,0 +1,23 @@
+<div class="pageTitle">
+  <h1><%= @comment.id %></h1>
+</div>
+
+<div class="toolbar">
+  <div class="leftItem">
+    <a href="<%= url_for :action => :index %>">Back</a>
+  </div>
+  <div class="rightItem regularButton">
+    <a href="<%= url_for :action => :edit, :id => @comment.object %>">Edit</a>
+  </div>
+</div>
+
+<div class="content">
+  <ul>
+    
+        <li>
+          <div class="itemLabel">Text</div>
+          <div class="itemValue"><%= @comment.text %></div>
+        </li>
+    
+  </ul>
+</div>

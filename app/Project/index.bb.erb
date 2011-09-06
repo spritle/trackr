@@ -1,0 +1,21 @@
+<div id="pageTitle">
+	<h1>Projects</h1>
+</div>
+
+
+<div id="toolbar">
+    <%= link_to "New", :action => :new %>
+    <%= link_to "Home", RhoConfig::start_path %>
+</div>
+
+<div id="content">
+  <table>
+    <tr>
+    <% @projects.each do |obj| %>
+    	
+    	    <td class="recordLabel"><%= link_to "#{obj.name}     #{obj.current_velocity}",:controller => "Story", :action => :get_stories, :query => {:projectid => obj.object,:iteration => "current",:ssl => obj.use_https} %></td>
+    	
+    <% end %>
+    </tr>
+  </table>
+</div>

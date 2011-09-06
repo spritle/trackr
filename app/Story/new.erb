@@ -1,0 +1,51 @@
+<div id="ajax" class="wrapper">
+  <header class="main margin">
+    <h1>
+      <% unless System::get_property('platform') == 'ANDROID' %>
+        <a href="<%= url_for :action => :index %>" class="backButton toolbar-btn left"><span>Cancel</span></a>
+      <%  end %>
+      New story
+    </h1>
+  </header>
+  <form method="POST" action="<%= url_for :action => :create %>">
+    <input type="hidden" name="id" value="<%= @story.object %>"/>
+    <section class="content padding">
+      <fieldset>
+        <div class="text editable">
+          <textarea rows="3" name="story[name]" placeholder="Name"></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <div class="text arrow">
+          <select name="story[story_type]" onchange="display_estimate(this.value)">
+            <option value="feature">Feature</option>
+            <option value="bug">Bug</option>
+            <option value="chore">Chore</option>
+            <option value="release">Release</option>
+          </select>
+          <span class="arrow"><img src="/public/images/icn/arrow-next.png" height="13" alt="Go" /></span>
+        </div>
+        
+        <div class="text arrow" id="story[estimate]">
+          <select name="story[estimate]">
+            <option value="">Unestimated</option>
+          <% @story.point_scale.split(",").each do |points| %>
+              <option value="<%= points %>"><%= points %> points</option>
+          <% end %>
+          </select>
+          <span class="arrow"><img src="/public/images/icn/arrow-next.png" height="13" alt="Go" /></span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <div class="text editable">
+          <textarea rows="6" name="story[description]" placeholder="Description"></textarea>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="button blue"><input type="submit" value="Create"/></div>
+      </fieldset>
+    </section>
+  </form>
+</div>

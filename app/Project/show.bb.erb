@@ -1,0 +1,41 @@
+<div id="pageTitle">
+	<h1><%= @project.projectid%></h1>
+</div>
+
+<div id="toolbar">
+        <%= link_to "Back", :action => :index %>
+        <%= link_to "Edit", :action => :edit, :id => @project.object %>
+</div>
+
+
+<div id="content">
+
+    <table>
+      
+      <tr>
+    	<td class="itemLabel">Projectid</td>
+        <td class="itemValue"><%= @project.projectid%></td>
+      </tr>
+      
+      <tr>
+    	<td class="itemLabel">Name</td>
+        <td class="itemValue"><%= @project.name%></td>
+      </tr>
+      
+      <tr>
+    	<td class="itemLabel">CurrentVelocity</td>
+        <td class="itemValue"><%= @project.current_velocity%></td>
+      </tr>
+      
+      <tr>
+    	<td class="itemLabel">Label</td>
+        <td class="itemValue"><%= @project.label%></td>
+      </tr>
+      
+      <tr>
+    	<td class="itemLabel">UseHttps</td>
+        <td class="itemValue"><%= @project.use_https%></td>
+      </tr>
+      
+    </table>
+</div>

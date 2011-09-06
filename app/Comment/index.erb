@@ -1,0 +1,24 @@
+<div id="ajax" class="wrapper">
+  <header class="main margin">
+    <h1>
+      <% unless System::get_property('platform') == 'ANDROID' %>
+        <a href="#" onclick="document.href='/app/Story/show?id=<%= @params["story_id"] %>'" class="backButton backbtn"><span>Back</span></a>
+      <%  end %>
+      Comments
+      <a class="add-btn" href="<%= url_for :controller => "Comment", :action => :new %>">
+        <span>+</span>
+      </a>
+    </h1>
+  </header>
+  <section class="content padding">
+     <% @comments.each do |comment| %>
+        <fieldset>
+          <div class="text">
+            <p><strong><%= comment.author %></strong><span class="date"><%= comment.noted_at %></span></p>
+            <p class="small"><%= comment.text %></p>
+          </div>
+        </fieldset>
+    <% end %>
+
+  </section>
+</div>

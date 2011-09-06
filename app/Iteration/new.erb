@@ -1,0 +1,37 @@
+<div id="pageTitle">
+	<h1>New <%= @iteration.title %></h1>
+</div>
+
+<div id="toolbar">
+     <div id="leftItem" class="backButton"><%= link_to "Cancel", :action => :index %></div>
+</div>
+
+<div id="content">
+    <form method="POST" action="<%= url_for :action => :create %>">
+            <input type="hidden" name="id" value="<%= @iteration.object %>"/>
+            <ul>
+                
+                <li>
+                    <label for="iteration[id]" class="fieldLabel">Id</label>
+                    <input type="text" name="iteration[id]" <%= placeholder( "Id" ) %> />
+                </li>
+                
+                <li>
+                    <label for="iteration[number]" class="fieldLabel">Number</label>
+                    <input type="text" name="iteration[number]" <%= placeholder( "Number" ) %> />
+                </li>
+                
+                <li>
+                    <label for="iteration[start]" class="fieldLabel">Start</label>
+                    <input type="text" name="iteration[start]" <%= placeholder( "Start" ) %> />
+                </li>
+                
+                <li>
+                    <label for="iteration[finish]" class="fieldLabel">Finish</label>
+                    <input type="text" name="iteration[finish]" <%= placeholder( "Finish" ) %> />
+                </li>
+                
+            </ul>
+            <input type="submit" class="standardButton" value="Create" />
+    </form>
+</div>

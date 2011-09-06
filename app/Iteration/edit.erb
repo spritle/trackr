@@ -1,0 +1,38 @@
+<div id="pageTitle">
+	<h1>Edit <%= @iteration.id%></h1>
+</div>
+
+<div id="toolbar">
+    <div id="leftItem" class="backButton"><%= link_to "Cancel", :action => :show, :id => @iteration.object %></div>
+    <div id="rightItem" class="regularButton"><%= link_to "Delete", :action => :delete, :id => @iteration.object %></div>
+</div>
+
+<div id="content">
+    <form method="POST" action="<%= url_for :action => :update %>">
+            <input type="hidden" name="id" value="<%= @iteration.object %>"/>
+            <ul>
+                
+                <li>
+                    <label for="iteration[id]" class="fieldLabel">Id</label>
+                    <input type="text" name="iteration[id]" value="<%= @iteration.id%>" <%= placeholder( "Id" ) %> />
+                </li>
+                
+                <li>
+                    <label for="iteration[number]" class="fieldLabel">Number</label>
+                    <input type="text" name="iteration[number]" value="<%= @iteration.number%>" <%= placeholder( "Number" ) %> />
+                </li>
+                
+                <li>
+                    <label for="iteration[start]" class="fieldLabel">Start</label>
+                    <input type="text" name="iteration[start]" value="<%= @iteration.start%>" <%= placeholder( "Start" ) %> />
+                </li>
+                
+                <li>
+                    <label for="iteration[finish]" class="fieldLabel">Finish</label>
+                    <input type="text" name="iteration[finish]" value="<%= @iteration.finish%>" <%= placeholder( "Finish" ) %> />
+                </li>
+                
+            </ul>
+            <input type="submit" class="standardButton" value="Update" />
+    </form>
+</div>

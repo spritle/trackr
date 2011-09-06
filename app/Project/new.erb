@@ -1,0 +1,49 @@
+<div class="pageTitle">
+  <h1>New <%= @project.title %></h1>
+</div>
+
+<div class="toolbar">
+  <div class="leftItem backButton">
+    <a class="cancel" href="<%= url_for :action => :index %>">Cancel</a>
+  </div>
+</div>
+
+<div class="content">
+  <form method="POST" action="<%= url_for :action => :create %>">
+    <input type="hidden" name="id" value="<%= @project.object %>"/>
+    <ul>
+      
+          <li>
+            <label for="project[projectid]" class="fieldLabel">Projectid</label>
+            <input type="text" name="project[projectid]" <%=
+            placeholder("Projectid") %> />
+          </li>
+      
+          <li>
+            <label for="project[name]" class="fieldLabel">Name</label>
+            <input type="text" name="project[name]" <%=
+            placeholder("Name") %> />
+          </li>
+      
+          <li>
+            <label for="project[current_velocity]" class="fieldLabel">Current velocity</label>
+            <input type="text" name="project[current_velocity]" <%=
+            placeholder("Current velocity") %> />
+          </li>
+      
+          <li>
+            <label for="project[label]" class="fieldLabel">Label</label>
+            <input type="text" name="project[label]" <%=
+            placeholder("Label") %> />
+          </li>
+      
+          <li>
+            <label for="project[use_https]" class="fieldLabel">Use https</label>
+            <input type="text" name="project[use_https]" <%=
+            placeholder("Use https") %> />
+          </li>
+      
+    </ul>
+    <input type="submit" class="standardButton" value="Create"/>
+  </form>
+</div>

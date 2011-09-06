@@ -1,0 +1,44 @@
+<div id="pageTitle">
+    <h1>New Project</h1>
+</div>
+
+<div id="toolbar">
+    <%= link_to "Back", :action => :index %>
+</div>
+
+
+<div id="content">
+
+    <form method="POST" action="<%= url_for :action => :create %>">
+	    <input type="hidden" name="id" value="<%= @project.object %>"/>
+        <table>
+    		
+    		  <tr>
+    			  <td class="itemLabel">Projectid: </td>
+    			  <td class="itemValue"><input type="text" name="project[projectid]"/></td>
+    		  </tr>
+    		
+    		  <tr>
+    			  <td class="itemLabel">Name: </td>
+    			  <td class="itemValue"><input type="text" name="project[name]"/></td>
+    		  </tr>
+    		
+    		  <tr>
+    			  <td class="itemLabel">Current velocity: </td>
+    			  <td class="itemValue"><input type="text" name="project[current_velocity]"/></td>
+    		  </tr>
+    		
+    		  <tr>
+    			  <td class="itemLabel">Label: </td>
+    			  <td class="itemValue"><input type="text" name="project[label]"/></td>
+    		  </tr>
+    		
+    		  <tr>
+    			  <td class="itemLabel">Use https: </td>
+    			  <td class="itemValue"><input type="text" name="project[use_https]"/></td>
+    		  </tr>
+    		
+        </table>
+        <input type="submit" class="standardButton" value="Create" />
+    </form>
+</div>

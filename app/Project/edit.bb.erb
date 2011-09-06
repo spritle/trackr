@@ -1,0 +1,44 @@
+<div id="pageTitle">
+		<h1>Edit <%= @project.projectid%></h1>
+</div>
+
+<div id="toolbar">
+    <%= link_to "Back", :action => :show, :id => @project.object %>
+    <%= link_to "Delete", :action => :delete, :id => @project.object %>
+</div>
+
+
+<div id="content">
+    <form method="POST" action="<%= url_for :action => :update %>">
+    	<input type="hidden" name="id" value="<%= @project.object %>"/>
+            <table>
+        		
+                    <tr>
+            			<td class="itemLabel">Projectid: </td>
+              			<td class="itemValue"><input type="text" name="project[projectid]" value="<%= @project.projectid %>"/></td>
+          		    </tr>
+        		
+                    <tr>
+            			<td class="itemLabel">Name: </td>
+              			<td class="itemValue"><input type="text" name="project[name]" value="<%= @project.name %>"/></td>
+          		    </tr>
+        		
+                    <tr>
+            			<td class="itemLabel">Current velocity: </td>
+              			<td class="itemValue"><input type="text" name="project[current_velocity]" value="<%= @project.current_velocity %>"/></td>
+          		    </tr>
+        		
+                    <tr>
+            			<td class="itemLabel">Label: </td>
+              			<td class="itemValue"><input type="text" name="project[label]" value="<%= @project.label %>"/></td>
+          		    </tr>
+        		
+                    <tr>
+            			<td class="itemLabel">Use https: </td>
+              			<td class="itemValue"><input type="text" name="project[use_https]" value="<%= @project.use_https %>"/></td>
+          		    </tr>
+        		
+            </table>
+            <input type="submit" class="standardButton" value="Update" />
+    </form>
+</div>

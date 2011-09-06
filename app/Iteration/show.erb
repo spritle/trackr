@@ -1,0 +1,34 @@
+<div id="pageTitle">
+	<h1><%= @iteration.id%></h1>
+</div>
+
+<div id="toolbar">
+    <div id="leftItem" class="backButton"><%= link_to "Back", :action => :index %></div>
+    <div id="rightItem" class="regularButton"><%= link_to "Edit", :action => :edit, :id => @iteration.object %></div>
+</div>
+
+<div id="content">
+    <ul>
+        
+        <li>
+            <div class="itemLabel">Id</div>
+            <div class="itemValue"><%= @iteration.id%></div>
+        </li>
+        
+        <li>
+            <div class="itemLabel">Number</div>
+            <div class="itemValue"><%= @iteration.number%></div>
+        </li>
+        
+        <li>
+            <div class="itemLabel">Start</div>
+            <div class="itemValue"><%= @iteration.start%></div>
+        </li>
+        
+        <li>
+            <div class="itemLabel">Finish</div>
+            <div class="itemValue"><%= @iteration.finish%></div>
+        </li>
+        
+    </ul>
+</div>

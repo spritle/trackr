@@ -1,0 +1,24 @@
+<div id="pageTitle">
+	<h1><%= @activity.name%></h1>
+</div>
+
+<div id="toolbar">
+    <div id="leftItem" class="backButton"><%= link_to "Back", :action => :index %></div>
+    <div id="rightItem" class="regularButton"><%= link_to "Edit", :action => :edit, :id => @activity.object %></div>
+</div>
+
+<div id="content">
+    <ul>
+        
+        <li>
+            <div class="itemLabel">Name</div>
+            <div class="itemValue"><%= @activity.name%></div>
+        </li>
+        
+        <li>
+            <div class="itemLabel">Author</div>
+            <div class="itemValue"><%= @activity.author%></div>
+        </li>
+        
+    </ul>
+</div>

@@ -1,0 +1,18 @@
+<div class="outer-wrapper">
+    <div class="wrapper">
+        <div class="loading-screen">
+                <img src="/public/images/misc/trackr-koombea.png" alt="Track-r" width="183" />
+                <img src="/public/images/misc/ajax-loader.gif" width="16" alt="Loading..." />
+        </div>
+    </div><!-- .wrapper -->
+   <% if System::get_property('device_name') == "iPad" %>
+      <% 50.times do %>
+        <br/>
+      <% end %>
+    <% end %>
+    <% if System::get_property('platform') == "ANDROID" %>
+      <% 10.times do %>
+        <br/>
+      <% end %>
+    <% end %>
+</div><!-- .outer-wrapper -->

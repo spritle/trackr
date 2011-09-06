@@ -1,0 +1,24 @@
+<div id="pageTitle">
+		<h1>Edit <%= @comment.text%></h1>
+</div>
+
+<div id="toolbar">
+    <%= link_to "Back", :action => :show, :id => @comment.object %>
+    <%= link_to "Delete", :action => :delete, :id => @comment.object %>
+</div>
+
+
+<div id="content">
+    <form method="POST" action="<%= url_for :action => :update %>">
+    	<input type="hidden" name="id" value="<%= @comment.object %>"/>
+            <table>
+        		
+                    <tr>
+            			<td class="itemLabel">Text: </td>
+              			<td class="itemValue"><input type="text" name="comment[text]" value="<%= @comment.text %>"/></td>
+          		    </tr>
+        		
+            </table>
+            <input type="submit" class="standardButton" value="Update" />
+    </form>
+</div>

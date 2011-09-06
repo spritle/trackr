@@ -1,0 +1,97 @@
+.login{
+    background:transparent url(/public/images/login.png) no-repeat scroll 0 0;
+    border:medium none;
+    height:47px;
+    text-align:center;
+    width:291px;
+}
+.started{
+    background:transparent url(/public/images/start_btn.png) no-repeat scroll 0 0;
+    border:medium none;
+    height:47px;
+    text-align:center;
+    width:291px
+}
+.finished{
+    background:transparent url(/public/images/finish_btn.png) no-repeat scroll 0 0;
+    border:medium none;
+    height:47px;
+    text-align:center;
+    width:291px;
+}
+.delivered{
+    background:transparent url(/public/images/deliver_btn.png) no-repeat scroll 0 0;
+    border:medium none;
+    height:47px;
+    text-align:center;
+    width:291px;
+}
+.create{
+    background:transparent url(/public/images/create_btn.png) no-repeat scroll 0 0;
+    border:medium none;
+    height:47px;
+    text-align:center;
+    width:291px
+}
+.accepted{
+    background:transparent url(/public/images/accept_btn.png) no-repeat scroll 0 0;
+    border:medium none;
+    height:47px;
+    width:291px;
+}
+.reject{
+    background:transparent url(/public/images/reject_btn.png) no-repeat scroll 0 0;
+    border:medium none;
+    height:47px;
+    width:291px;
+}
+.restart{
+    background:transparent url(/public/images/restart_btn.png) no-repeat scroll 0 0;
+    border:medium none;
+    margin-top:0px;
+    height:47px;
+    width:291px;
+
+
+}
+.save_tickets{
+    background:transparent url(/public/images/save_tickets.png) no-repeat scroll 0 0;
+    border:medium none;
+    float:left;
+    height:55px;
+    margin-right:5px;
+    margin-top:-10px;
+    width:300px;
+}
+.delete_story{
+    background:transparent url(/public/images/delete.png) no-repeat scroll 0 0;
+    border:medium none;
+    height:47px;
+    text-align:center;
+    width:291px
+}
+
+.add_story{
+    width:93.8%;
+    padding:10px;
+    background: #636373 url(/public/images/add_story_bground.png) repeat-x;
+}
+.close_add_story{
+    float:right;
+    margin-right:10px;
+    width:32px;
+    height:33px;
+    background: url(/public/images/close_popup.png) no-repeat right center;
+}
+.add_new{
+    color:white;
+    display:block;
+    padding-bottom:20px;
+    text-decoration:none;
+}
+.update{
+    background:transparent url(/public/images/update.png) no-repeat scroll 0 0;
+    border:medium none;
+    height:47px;
+    width:291px;
+}

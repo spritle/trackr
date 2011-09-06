@@ -1,0 +1,47 @@
+<div class="pageTitle">
+  <h1>Edit <%= @project.projectid %></h1>
+</div>
+
+<div class="toolbar">
+  <div class="leftItem backButton">
+    <a href="<%= url_for :action => :show, :id => @project.object %>">Cancel</a>
+  </div>
+  <div class="rightItem regularButton">
+    <a class="button" href="<%= url_for :action => :delete, :id => @project.object %>">Delete</a>
+  </div>
+</div>
+
+<div class="content">
+  <form method="POST" action="<%= url_for :action => :update %>">
+    <input type="hidden" name="id" value="<%= @project.object %>"/>
+    <ul>
+      
+          <li>
+            <label for="project[projectid]" class="fieldLabel">Projectid</label>
+            <input type="text" name="project[projectid]" value="<%= @project.projectid %>" <%= placeholder( "Projectid" ) %> />
+          </li>
+      
+          <li>
+            <label for="project[name]" class="fieldLabel">Name</label>
+            <input type="text" name="project[name]" value="<%= @project.name %>" <%= placeholder( "Name" ) %> />
+          </li>
+      
+          <li>
+            <label for="project[current_velocity]" class="fieldLabel">Current velocity</label>
+            <input type="text" name="project[current_velocity]" value="<%= @project.current_velocity %>" <%= placeholder( "Current velocity" ) %> />
+          </li>
+      
+          <li>
+            <label for="project[label]" class="fieldLabel">Label</label>
+            <input type="text" name="project[label]" value="<%= @project.label %>" <%= placeholder( "Label" ) %> />
+          </li>
+      
+          <li>
+            <label for="project[use_https]" class="fieldLabel">Use https</label>
+            <input type="text" name="project[use_https]" value="<%= @project.use_https %>" <%= placeholder( "Use https" ) %> />
+          </li>
+      
+    </ul>
+    <input type="submit" class="standardButton" value="Update"/>
+  </form>
+</div>

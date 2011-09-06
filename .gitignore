@@ -1,0 +1,10 @@
+.DS_store
+bin/*
+applog.txt
+rholog-*
+sim-public*
+preverified/*
+RhoBundle/*
+last_bbver
+Thumbs.db
+build.yml

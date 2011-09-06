@@ -1,0 +1,18 @@
+<div id="ajax" class="plastic" style="width:316px">
+  <div class="toolbar">
+    <span class="story_name" style="text-align:center;top:7px"><h1 id="pageTitle">Activity feed
+      </h1>
+    </span>
+  </div>
+
+  <ul id="customers" title="Customers" selected="true">
+      <%  @activities.each do |obj| %>
+
+          <li class="table">
+            <span class="title"><font size="2px"><%= obj.description %></font></span>
+            <span class="disclosure_indicator"></span>
+          </li>
+
+      <% end %>
+  </ul>
+</div>

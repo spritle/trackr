@@ -1,0 +1,21 @@
+<div id="pageTitle">
+	<h1><%= @comment.text%></h1>
+</div>
+
+<div id="toolbar">
+        <%= link_to "Back", :action => :index %>
+        <%= link_to "Edit", :action => :edit, :id => @comment.object %>
+</div>
+
+
+<div id="content">
+
+    <table>
+      
+      <tr>
+    	<td class="itemLabel">Text</td>
+        <td class="itemValue"><%= @comment.text%></td>
+      </tr>
+      
+    </table>
+</div>

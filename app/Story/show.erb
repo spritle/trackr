@@ -1,0 +1,151 @@
+<div id="ajax" class="wrapper">
+    <header class="main margin">
+        <h1>
+          <% unless System::get_property('platform') == 'ANDROID' %>
+            <a href="#" onclick="document.href='/app/Story/get_stories'" class="backButton backbtn"><span>Project</span></a>
+          <% end %>
+          Story
+          <a href="<%= url_for :action => :edit, :id => @story.object %>" class="toolbar-btn"><span>Edit</span></a>
+        </h1>
+    </header>
+
+
+  <section class="content padding">
+    <fieldset>
+      <div class="text">
+        <p class="title"><%= @story.name %></p>
+      </div>
+    </fieldset>
+
+    <% unless @story.description == "" %>
+      <fieldset>
+        <div class="text">
+          <p class="title">Description</p>
+          <p class="small"><%= @story.description %></p>
+        </div>
+      </fieldset>
+    <% end %>
+
+    <fieldset>
+      <div class="text">
+        <p class="small icon <%= @story.story_type %> right"><%= @story.story_type.capitalize %></p>
+      </div>
+
+    <% if @story.story_type=="feature"
+        if @story.estimate.to_i >= 0 %>
+      <div class="text">
+        <p class="small"><%=  @story.estimate %> points</p>
+      </div>
+     <% end
+       end %>
+
+      <div class="text">
+        <p class="small"><%= @story.current_state.capitalize %></p>
+      </div>
+    </fieldset>
+
+
+    <% if @story.labels %>
+      <fieldset>
+        <div class="text">
+          <p class="title">Labels</p>
+          <p class="small"><%= @story.labels %></p>
+        </div>
+      </fieldset>
+    <% end %>
+
+    <% if @story.requested_by %>
+      <fieldset>
+        <div class="text">
+          <p class="title">Requested by</p>
+          <p class="small"><%= @story.requested_by %></p>
+        </div>
+      </fieldset>
+    <% end %>
+
+    <% if @story.owned_by %>
+      <fieldset>
+        <div class="text">
+          <p class="title">Owned by</p>
+          <p class="small"><%= @story.owned_by %></p>
+        </div>
+      </fieldset>
+    <% end %>
+
+    <% if @story.created_at %>
+      <fieldset>
+        <div class="text">
+          <p class="title">Created at</p>
+          <p class="small"><%= @story.created_at %></p>
+        </div>
+      </fieldset>
+    <% end %>
+
+    <% if @story.accepted_at %>
+      <fieldset>
+        <div class="text">
+          <p class="title">Accepted at</p>
+          <p class="small"><%= @story.accepted_at %></p>
+        </div>
+      </fieldset>
+    <% end %>
+
+    <% if @story.num_comments.to_i > 0 %>
+      <fieldset>
+          <a class="text arrow" href="<%= url_for :controller => "Comment", :action => :index, :query => { :story_id => @story.object } %>" class="icon comment left">
+            <span>Comments </span><span class="number"><%= @story.num_comments %></span>
+            <span class="arrow"><img src="/public/images/icn/arrow-next.png" height="13" alt="Go" /></span>
+          </a>
+      </fieldset>
+    <%else%>
+      <fieldset>
+          <a class="text arrow" href="<%= url_for :controller => "Comment", :action => :new, :query => { :story_id => @story.object } %>" class="icon comment left">
+            <span>Comments </span><span class="number">0</span>
+            <span class="arrow"><img src="/public/images/icn/arrow-next.png" height="13" alt="Go" /></span>
+          </a>
+      </fieldset>
+    <%end%>
+
+    <form action="<%= url_for :action => :update %>" id="form">
+      <input type="hidden" name="id" value="<%= @story.object %>"/>
+      <input type="hidden" name="story[projectid]" value="<%= @story.projectid %>" />
+      <input type="hidden" name="story[name]" value="<%= @story.name %>" />
+      <input type="hidden" name="story[story_type]" value="<%= @story.story_type %>" />
+      <input type="hidden" name="story[estimate]" value="<%= @story.estimate %>" />
+      <input type="hidden" name="story[description]" value="<%= @story.description %>" />
+      <input type="hidden" name="story[current_state]" id="current_state" />
+      <% if (@story.current_state == "unscheduled" or @story.current_state == "unstarted")
+          if @story.story_type == "feature"
+             if @story.estimate.to_i >= 0 %>
+                <fieldset>
+                  <a href="#" onClick="change_status(document.getElementById('form'), 'started')" class="button gray"><span>Start</span></a>
+                </fieldset>
+      <%     end
+          else %>
+            <fieldset>
+                <a href="#" onClick="change_status(document.getElementById('form'), 'started')" class="button gray"><span>Start</span></a>
+            </fieldset>
+      <%  end
+         elsif @story.current_state == "started" %>
+          <fieldset>
+            <a href="#" onClick="change_status(document.getElementById('form'), 'finished')" class="button blue"><span>Finish</span></a>
+          </fieldset>
+      <% elsif @story.current_state == "finished" %>
+          <fieldset>
+            <a href="#" onClick="change_status(document.getElementById('form'), 'delivered')" class="button orange"><span>Deliver</span></a>
+          </fieldset>
+      <% elsif @story.current_state == "delivered" %>
+          <fieldset>
+            <a href="#" onClick="change_status(document.getElementById('form'), 'accepted')" class="button green"><span>Accept</span></a>
+          </fieldset>
+          <fieldset>
+            <a href="#" onClick="change_status(document.getElementById('form'), 'rejected')" class="button red"><span>Reject</span></a>
+          </fieldset>
+      <% elsif @story.current_state == "rejected" %>
+          <fieldset>
+            <a href="#" onClick="change_status(document.getElementById('form'), 'unstarted')" class="button gray"><span><small class="restart"></small>Restart</span></a>
+          </fieldset>
+      <% end %>
+    </form>
+  </section>
+</div>

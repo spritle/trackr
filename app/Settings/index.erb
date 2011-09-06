@@ -1,0 +1,33 @@
+<div class="wrapper">
+  <header class="main margin">
+      <h1>Settings</h1>
+  </header>
+  <section class="content padding">
+    <% if @msg %><ul><li style="color:#97c43a" align="center"><%=@msg%></li></ul><% end %>
+
+    <fieldset>
+
+        <a class="text arrow" href="<%= url_for :action => :about %>">
+          <span>About Track-r </span>
+          <span class="arrow"><img src="/public/images/icn/arrow-next.png" height="13" alt="Go" /></span>
+        </a>
+        <% if Rho::RhoConfig.current_login.to_i > 0 %>
+          <a class="text arrow" href="<%= url_for :action => :logout %>">
+            <span>Logout </span>
+            <span class="arrow"><img src="/public/images/icn/arrow-next.png" height="13" alt="Go" /></span>
+          </a>     
+        <% else %>
+          <a class="text arrow" href="<%= url_for :action => :login %>">
+            <span>Login </span>
+            <span class="arrow"><img src="/public/images/icn/arrow-next.png" height="13" alt="Go" /></span>
+          </a>
+        <% end %>
+    </fieldset>
+
+    <fieldset>
+        <a class="text" href="<%= url_for :action => :send_log %>">
+          <span>Send debug logs to developer</span>
+        </a>
+    </fieldset>
+  </section>
+</div><!-- .wrapper -->

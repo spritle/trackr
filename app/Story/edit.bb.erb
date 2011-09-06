@@ -1,0 +1,79 @@
+<div id="pageTitle">
+		<h1>Edit <%= @story.storyid%></h1>
+</div>
+
+<div id="toolbar">
+    <%= link_to "Back", :action => :show, :id => @story.object %>
+    <%= link_to "Delete", :action => :delete, :id => @story.object %>
+</div>
+
+
+<div id="content">
+    <form method="POST" action="<%= url_for :action => :update %>">
+    	<input type="hidden" name="id" value="<%= @story.object %>"/>
+            <table>
+        		
+                    <tr>
+            			<td class="itemLabel">Storyid: </td>
+              			<td class="itemValue"><input type="text" name="story[storyid]" value="<%= @story.storyid %>"/></td>
+          		    </tr>
+        		
+                    <tr>
+            			<td class="itemLabel">Projectid: </td>
+              			<td class="itemValue"><input type="text" name="story[projectid]" value="<%= @story.projectid %>"/></td>
+          		    </tr>
+        		
+                    <tr>
+            			<td class="itemLabel">Story type: </td>
+              			<td class="itemValue"><input type="text" name="story[story_type]" value="<%= @story.story_type %>"/></td>
+          		    </tr>
+        		
+                    <tr>
+            			<td class="itemLabel">Estimate: </td>
+              			<td class="itemValue"><input type="text" name="story[estimate]" value="<%= @story.estimate %>"/></td>
+          		    </tr>
+        		
+                    <tr>
+            			<td class="itemLabel">Current state: </td>
+              			<td class="itemValue"><input type="text" name="story[current_state]" value="<%= @story.current_state %>"/></td>
+          		    </tr>
+        		
+                    <tr>
+            			<td class="itemLabel">Description: </td>
+              			<td class="itemValue"><input type="text" name="story[description]" value="<%= @story.description %>"/></td>
+          		    </tr>
+        		
+                    <tr>
+            			<td class="itemLabel">Name: </td>
+              			<td class="itemValue"><input type="text" name="story[name]" value="<%= @story.name %>"/></td>
+          		    </tr>
+        		
+                    <tr>
+            			<td class="itemLabel">Requested by: </td>
+              			<td class="itemValue"><input type="text" name="story[requested_by]" value="<%= @story.requested_by %>"/></td>
+          		    </tr>
+        		
+                    <tr>
+            			<td class="itemLabel">Owned by: </td>
+              			<td class="itemValue"><input type="text" name="story[owned_by]" value="<%= @story.owned_by %>"/></td>
+          		    </tr>
+        		
+                    <tr>
+            			<td class="itemLabel">Created at: </td>
+              			<td class="itemValue"><input type="text" name="story[created_at]" value="<%= @story.created_at %>"/></td>
+          		    </tr>
+        		
+                    <tr>
+            			<td class="itemLabel">Accepted at: </td>
+              			<td class="itemValue"><input type="text" name="story[accepted_at]" value="<%= @story.accepted_at %>"/></td>
+          		    </tr>
+        		
+                    <tr>
+            			<td class="itemLabel">Labels: </td>
+              			<td class="itemValue"><input type="text" name="story[labels]" value="<%= @story.labels %>"/></td>
+          		    </tr>
+        		
+            </table>
+            <input type="submit" class="standardButton" value="Update" />
+    </form>
+</div>

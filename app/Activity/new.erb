@@ -1,0 +1,27 @@
+<div id="pageTitle">
+	<h1>New <%= @activity.title %></h1>
+</div>
+
+<div id="toolbar">
+     <div id="leftItem" class="backButton"><%= link_to "Cancel", :action => :index %></div>
+</div>
+
+<div id="content">
+    <form method="POST" action="<%= url_for :action => :create %>">
+            <input type="hidden" name="id" value="<%= @activity.object %>"/>
+            <ul>
+                
+                <li>
+                    <label for="activity[name]" class="fieldLabel">Name</label>
+                    <input type="text" name="activity[name]" <%= placeholder( "Name" ) %> />
+                </li>
+                
+                <li>
+                    <label for="activity[author]" class="fieldLabel">Author</label>
+                    <input type="text" name="activity[author]" <%= placeholder( "Author" ) %> />
+                </li>
+                
+            </ul>
+            <input type="submit" class="standardButton" value="Create" />
+    </form>
+</div>

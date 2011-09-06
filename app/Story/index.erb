@@ -1,0 +1,151 @@
+<script type="text/javascript">
+  var removeTransition = function() {
+      content.style['-webkit-transition-duration'] = 0;
+  };
+    function beginReloading()
+  {
+      setTimeout(endReloading,1000);
+  }
+  function endReloading()
+  {
+      refreshing.style.display = 'none';
+      content.style.top = '0';
+      content.addEventListener('transitionEnd', removeTransition);
+      location.href="/app/Story/refresh?projectid=<%= Rho::RhoConfig.current_project_id %>&iteration=<%= Rho::RhoConfig.current_iteration %>";
+  }
+
+  story_index.addEventListener('touchstart', function(e) {
+      content = document.getElementById('content');
+      refreshing = document.getElementById('refreshing');
+      contentStartY = parseInt(content.style.top);
+      startY = e.touches[0].screenY
+  });
+
+  story_index.addEventListener('touchmove', function(e) {
+      
+      var move_to = contentStartY - (startY - e.changedTouches[0].screenY);
+      if(move_to > 0) track = true;
+      content.style.top = move_to + 'px';
+      if(move_to > 20) {
+          refreshing.style.display = '';
+          refresh = true;
+      } else {
+          content.style['-webkit-transition'] = '';
+          refresh = false;
+      }
+  });
+
+  story_index.addEventListener('touchend', function(e) {
+      if(refresh) {
+          content.style['-webkit-transition-duration'] = '.5s';
+          content.style.top = '50px';
+          beginReloading();
+          refresh = false;
+
+      } else if(track) {
+          content.style['-webkit-transition-duration'] = '.25s';
+          content.style.top = '0';
+          content.addEventListener('transitionEnd', removeTransition);
+      }
+      track = false;
+  });
+</script>
+<div class="wrapper">
+  <header class="main" id="story_index">
+    <h1>
+      <%  unless System::get_property('platform') == 'ANDROID' %>
+        <a href="<%= url_for :controller => :Project, :action => :load_tab %>" class="backbtn"><span>Projects</span></a>
+      <%  end %>
+      <%  if @project.name.size > 12  %>
+          <%= "#{@project.name.capitalize[0,12]}..." %>
+      <% else %>
+          <%= @project.name.capitalize %>
+      <% end %>
+      <a class="add-btn" href="<%= url_for :action => :new %>">
+        <span>+</span>
+      </a>
+    </h1>
+  </header>
+
+  <section id="refreshing" style="display: none;">
+      <img src="/public/images/misc/refresh-loader.gif" alt="Loading..." width="16" />
+      <div>Refreshing <%= Rho::RhoConfig.current_iteration %>'s stories </div>
+  </section>
+
+  <section class="content" style="top: 0; -webkit-transition: top .5s ease-out" id="content">
+
+   <ul class="full-list zebra">
+    <%
+    unless @iteration == "icebox"
+      @iterations.each do |iteration|
+        unless @stories == []
+    %>
+         <li class="separator open" onclick="display_div('<%= iteration.number %>', this)">
+           <span><%= iteration.number.to_i %> - <%= iteration.start[0,6] %></span>
+           <span class="points">Pts: <%= iteration.points %></span>
+         </li>
+     <% end %>
+         <div id="<%= iteration.number %>">
+        <% 
+          @stories.each do |story|
+             if iteration.number == story.iteration_id
+        %>
+              <li>
+                <a href="<%= url_for :action => :show, :query => {:id => story.object} %>">
+                  <span class="icon <%=story.story_type%>" style="float:left">&nbsp;</span>
+                  <% unless story.description == "" and story.num_comments.to_i <= 0 %>
+                    <span class="icon comment" style="clear:left">&nbsp;</span>
+                  <% else %>
+                    <span style="clear:left;display:block;height: 18px;margin-bottom: 2px;">&nbsp;</span>
+                  <% end %>
+                  <span class="story-name" style="clear:right; margin-top:-40px"><%= story.name %></span>
+                  <span class="<%= story.current_state %>" style="margin-left:28px; font-size:11px;"><%= story.current_state.gsub(/^./) {|l| l.upcase}%></span>
+                  <%if story.story_type == "feature" %>
+                    <% if story.estimate.to_i >= 0%>
+                        <span style="font-size:11px;"><%= story.estimate %> Points</span>
+                    <% end %>
+                  <% end %>
+                  <% if story.num_comments.to_i >= 0%>
+                    <span style="font-size:11px;"><%= story.num_comments ?  story.num_comments : 0 %> Comments</span>
+                  <% end%>
+                  <img src="/public/images/icn/arrow-next.png" height="13" alt="Go" style="margin-top: -8px; position: absolute; right: 15px; top: 50%;" />
+                </a>
+              </li>
+
+        <% end
+        end %>
+        </div>
+    <% end
+    else
+      @stories.each do |story| %>
+
+        <li>
+          <a href="<%= url_for :action => :show, :query => {:id => story.object} %>">
+            <span class="icon <%=story.story_type%>" style="float:left">&nbsp;</span>
+            <% unless story.description == "" and story.num_comments.to_i <= 0 %>
+              <span class="icon comment" style="clear:left">&nbsp;</span>
+            <% else %>
+              <span style="clear:left;display:block;height: 18px;margin-bottom: 2px;">&nbsp;</span>
+            <% end %>
+            <span class="story-name" style="clear:right; margin-top:-40px"><%= story.name %></span>
+            <span class="<%= story.current_state %>" style="margin-left:28px; font-size:11px;"><%= story.current_state.gsub(/^./) {|l| l.upcase}%></span>
+            <%if story.story_type == "feature" %>
+              <% if story.estimate.to_i >= 0%>
+                  <span style="font-size:11px;"><%= story.estimate %> Points</span>
+              <% end %>
+            <% end %>
+            <% if story.num_comments.to_i >= 0%>
+              <span style="font-size:11px;"><%= story.num_comments ?  story.num_comments : 0 %> Comments</span>
+            <% end%>
+            <img src="/public/images/icn/arrow-next.png" height="13" alt="Go" style="margin-top: -8px; position: absolute; right: 15px; top: 50%;" />
+          </a>
+        </li>
+              
+      <% end
+    end %>
+  </ul>
+  </section>
+</div>
+<script type="text/javascript">
+  story_index = document.getElementById('story_index');
+</script>

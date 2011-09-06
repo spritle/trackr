@@ -1,0 +1,19 @@
+<div class="wrapper">
+  <header class="main margin">
+    <h1>
+      <% unless System::get_property('platform') == 'ANDROID' %>
+        <a href="<%= url_for :action => :index %>" class="backButton backbtn"><span>Back</span></a>
+      <%  end %>
+      About Us</h1>
+  </header>
+  <section class="content padding page">
+    <h2 class="logo"><img src="/public/images/misc/logo-black.png" alt="Track-r" width="128" /></h2>
+    <p><strong>Pivotal Tracker on the Go</strong><br /><br />
+      Track-r is a mobile client for Pivotal Tracker designed for product owners and developers. With Track-r, you can manage multiple projects when you're away from your desk.</p>
+    <p>Track-r was written in Ruby and HTML using <a href="http://www.rhohub.com">RhoHub</a> from <a href="http://www.rhomobile.com">Rhomobile</a>.</p>
+    
+    <p><a href="#" onclick="document.href='http://www.koombea.com'">Koombea</a> is a mobile and web development agency focusing on agile design and development.</p>
+
+    <p><img src="/public/images/misc/logo-koombea.png" alt="Koombea" width="100" /></p>
+  </section>
+</div><!-- .wrapper -->
